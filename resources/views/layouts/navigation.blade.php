@@ -13,9 +13,21 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Find Quiz') }}
+                        @if (Auth::user()->is_admin)
+                            {{ __('Voeg Quiz toe / Alle Quizzen') }}
+                        @endif
+                        @if (Auth::user()->is_admin == 0)
+                            {{ __('Quiz zoeken') }}
+                        @endif
                     </x-nav-link>
                 </div>
+                @if (Auth::user()->is_admin)
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('studentView')" :active="request()->routeIs('studentView')">
+                            {{ __('Leerling Overzicht') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
