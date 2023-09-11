@@ -10,11 +10,7 @@ class Quiz extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'data',
         'Explanation'
     ];
-
-    public function categoryQuestions()
-    {
-        return $this->hasMany(Question::class);
-    }
 }
