@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('options', function (Blueprint $table) {
+        Schema::create('question_results', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('results_id');
+            $table->foreign('results_id')->references('id')->on('results')->onDelete('cascade');
             $table->unsignedBigInteger('questions_id');
             $table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->string('option')->nullable();
-            $table->string('checkOption')->nullable();
-            $table->integer('points')->nullable();
+            $table->unsignedBigInteger('options_id');
+            $table->foreign('options_id')->references('id')->on('options')->onDelete('cascade');
+            $table->integer('total_points')->nullable();
             $table->timestamps();
         });
     }
