@@ -8,7 +8,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         @if (Auth::user()->is_admin)
-                            {{ __('Voeg Quiz toe / Alle Quizzen') }}
+                            {{ __('Alle Quizzen') }}
                         @endif
                         @if (Auth::user()->is_admin == 0)
                             {{ __('Quiz zoeken') }}
@@ -19,6 +19,11 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('studentView')" :active="request()->routeIs('studentView')">
                             {{ __('Leerling Overzicht') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('quizzes.save')" :active="request()->routeIs('quizzes.save')">
+                            {{ __('Voeg Quiz toe') }}
                         </x-nav-link>
                     </div>
                 @endif
