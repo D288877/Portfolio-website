@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\StudentController;
 use App\Models\Quiz;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    $quizzes = Quiz::all();
-    return view('dashboard', ['quizzes' => $quizzes]);
-})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [QuizController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -31,8 +29,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/quiz/create', [QuizController::class, 'save']);
         Route::get('/StudentView', [StudentController::class, 'view'])->name('studentView');
     });
-    Route::get('/quiz/{quizId}', [QuizController::class, 'showQuiz']);
-    Route::post('/quiz/submit', [QuizController::class, 'submitQuiz']);
+    Route::get('/quiz/{quizId}', [QuizController::class, 'showQuiz'])->name('quiz');
+    Route::post('/quiz/submit/{quizId}', [QuizController::class, 'submitQuiz'])->name('quiz.submit');
 });
 
 require __DIR__ . '/auth.php';

@@ -4,10 +4,11 @@
         <div class="grid grid-cols-2 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="/quiz/create" method="POST" class="ml-3 w-40">
+                    <form action="/quiz/create" method="POST" class="ml-3 w-40" enctype="multipart/form-data">
                         @csrf
                         <label for="quiz_data">Quiz Data (JSON file):</label>
                         <input type="file" name="quiz_data" id="quiz_data" class="my-3">
+                        <x-input-error :messages="$errors->get('quiz_data')" class="mt-2" />
                         <x-primary-button type="submit">Submit</x-primary-button>
                     </form>
                 </div>
