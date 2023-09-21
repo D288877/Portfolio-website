@@ -111,4 +111,11 @@ class QuizController extends Controller
 
         return min(max($score, 0), 10);
     }
+
+    public function delete($quizId)
+    {
+        $quiz = Quiz::findOrFail($quizId);
+        $quiz->delete();
+        return redirect()->route('dashboard');
+    }
 }

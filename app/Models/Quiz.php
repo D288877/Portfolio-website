@@ -11,4 +11,9 @@ class Quiz extends Model
     protected $fillable = [
         'quiz_data'
     ];
+
+    public function results()
+    {
+        return $this->hasMany(QuizResult::class, 'quizzes_id');
+    }
 }

@@ -12,4 +12,14 @@ class QuizResult extends Model
         'user_id',
         'quizzes_id'
     ];
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class, 'quizzes_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

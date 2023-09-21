@@ -5,6 +5,11 @@
             @foreach ($quizDataArray as $quizData)
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg m-2">
                     <div class="p-6 text-gray-900 text-center">
+                        @if (Auth::user()->is_admin)
+                            <a class="text-red-500 inline-block"
+                                href="{{ route('deletequiz', ['quizId' => $quizData['quizID']]) }}"><x-heroicon-o-trash
+                                    class="w-5" /></a>
+                        @endif
                         <h2 class="font-bold">{{ $quizData['quizTitle'] }}</h2>
                         <p class="my-3">{{ $quizData['quizExplanation'] }}</p>
                         <a href="{{ route('quiz', ['quizId' => $quizData['quizID']]) }}"

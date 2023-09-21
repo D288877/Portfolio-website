@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/quiz/create', [QuizController::class, 'create'])->name('quizzes.save');
         Route::post('/quiz/create', [QuizController::class, 'save']);
         Route::get('/StudentView', [StudentController::class, 'view'])->name('studentView');
+        Route::get('/dashboard/{quizId}', [QuizController::class, 'delete'])->name('deletequiz');
     });
     Route::get('/quiz/{quizId}', [QuizController::class, 'showQuiz'])->name('quiz');
     Route::post('/quiz/submit/{quizId}', [QuizController::class, 'submitQuiz'])->name('quiz.submit');
